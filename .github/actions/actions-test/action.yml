@@ -2,7 +2,7 @@ name: 'comment-action'
 description: 'When a pull request is labeled Create a comment'
 inputs:
   msg:
-    description: Comment's message
+    description: "Comment's message"
     required: true
 runs:
   using: 'docker'
