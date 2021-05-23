@@ -1,0 +1,29 @@
+name: Increment the build number
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+    paths-ignore: [ '**/build-number.json' ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+ increment:
+   name: Increment the build number
+   runs-on: ubuntu-latest
+   strategy:
+     matrix:
+       node-version: [10.x]
+   steps:
+     - name: Checkout Repository
+       uses: actions/checkout@v2
+       with:
+         ref: main
+     - name: Increment value
+       uses: y-okubo/custom-github-actions@main
+       with:
+         target_directory: 'foobar/baz'
+         target_file: 'build-number.json'
+         prefix: '{"buildNumber":'
+         suffix: '}'
